@@ -1,0 +1,13 @@
+{
+  "name": "astro-daisy-theme-toggle",
+  "version": "0.0.1",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Grahf0085/astro-daisy-theme-toggle.git"
+  },
+  "workspaces": [
+    "demo",
+    "package"
+  ]
+}
