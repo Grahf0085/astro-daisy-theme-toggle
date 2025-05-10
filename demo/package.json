@@ -11,6 +11,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.6",
     "astro": "^5.7.12",
+    "astro-daisy-theme-toggle": "^0.0.3",
     "tailwindcss": "^4.1.6"
   },
   "devDependencies": {

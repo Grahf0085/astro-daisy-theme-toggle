@@ -1,6 +1,9 @@
 ---
+import { ClientRouter } from 'astro:transitions'
+
 import './styles/global.css'
 import Navigation from './components/Navigation.astro'
+import Theme from './components/Theme.astro'
 ---
 
 <html lang='en'>
@@ -9,10 +12,11 @@ import Navigation from './components/Navigation.astro'
     <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
     <meta name='viewport' content='width=device-width' />
     <meta name='generator' content={Astro.generator} />
-    <title>AstroJS + DaisyUI Theme Toggle Demi</title>
+    <title>AstroJS + DaisyUI Theme Toggle Demo</title>
+    <ClientRouter />
   </head>
   <body>
-    <header><Navigation /></header>
+    <header class='flex items-center'><Theme /> <Navigation /></header>
     <div class='flex justify-center items-center'>
       <slot />
     </div>
