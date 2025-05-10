@@ -1,0 +1,87 @@
+---
+import { themeList } from './themeList'
+
+let { darkTheme, lightTheme } = Astro.props
+
+if (!themeList.includes(darkTheme)) {
+  console.error(`Unknown theme ${darkTheme} selected. Using dark backup theme`)
+  darkTheme = 'dark'
+}
+
+if (!themeList.includes(lightTheme)) {
+  console.error(
+    `Unknown theme ${lightTheme} selected. Using light backup theme`,
+  )
+  lightTheme = 'light'
+}
+---
+
+<div id='themePasser' data-dark-theme={darkTheme} data-light-theme={lightTheme}>
+  <slot />
+</div>
+
+<script data-astro-rerun>
+  function setTheme(document) {
+    const htmlElement = document.documentElement
+    const themeInput = document.querySelector('.theme-controller')
+
+    themeInput.value = ''
+
+    const theme = (() => {
+      const localStorageTheme = localStorage?.getItem('theme') ?? ''
+      if (['dark', 'light'].includes(localStorageTheme)) {
+        return localStorageTheme
+      }
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark'
+      }
+      return 'light'
+    })()
+
+    if (theme === 'light') {
+      themeInput.checked = false
+      const lightTheme =
+        document.querySelector('#themePasser').dataset.lightTheme
+      htmlElement.setAttribute('data-theme', lightTheme)
+    } else {
+      themeInput.checked = true
+      const darkTheme = document.querySelector('#themePasser').dataset.darkTheme
+      htmlElement.setAttribute('data-theme', darkTheme)
+    }
+
+    window.localStorage.setItem('theme', theme)
+  }
+
+  setTheme(document)
+
+  document.addEventListener('astro:before-swap', (event) => {
+    setTheme(event.newDocument)
+  })
+
+  document.querySelector('.theme-controller').addEventListener('input', () => {
+    const htmlElement = document.documentElement
+    const lightTheme = document.querySelector('#themePasser').dataset.lightTheme
+    const darkTheme = document.querySelector('#themePasser').dataset.darkTheme
+
+    localStorage.setItem(
+      'theme',
+      document.querySelector('.theme-controller').checked ? 'dark' : 'light',
+    )
+    htmlElement.setAttribute(
+      'data-theme',
+      document.querySelector('.theme-controller').checked
+        ? darkTheme
+        : lightTheme,
+    )
+  })
+</script>
+
+<style>
+  @plugin "daisyui" {
+    themes: all;
+  }
+
+  #themePasser {
+    display: contents;
+  }
+</style>
