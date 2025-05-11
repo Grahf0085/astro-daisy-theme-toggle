@@ -1,6 +1,10 @@
 # Astro Daisy Theme Toggle
 Component to add a dark and light theme to your AstroJS and DaisyUI project.
 
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+
+[![Bundle size](https://img.shields.io/bundlejs/size/astro-daisy-theme-toggle?exports=default%20as%20AstroDaisyThemeToggle&label=size)](https://bundlejs.com/?q=astro-daisy-theme-toggle%400.0.4)
+
 ## Features
 - Use any [DaisyUI theme](https://daisyui.com/docs/themes/#list-of-themes)
 - If an invalid theme is used it will default to DaisyUIs dark and light theme

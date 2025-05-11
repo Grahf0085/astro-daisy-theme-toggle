@@ -1,7 +1,7 @@
 {
   "name": "astro-daisy-theme-toggle",
   "description": "Component to set the DaisyUI light and dark theme of your AstroJS app",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "homepage": "https://github.com/Grahf0085/astro-daisy-theme-toggle",
   "type": "module",
   "keywords": [
@@ -38,5 +38,6 @@
     "astro": "^4.0.0 || ^5.0.0",
     "daisyui": "^5.0.0",
     "tailwindcss": "^4.0.0"
-  }
+  },
+  "license": "AGPL-3.0-or-later"
 }
