@@ -1,35 +1,38 @@
-# Astro Starter Kit: Component Package
 
-This is a template for an Astro component library. Use this template for writing components to use in multiple projects or publish to NPM.
+# Astro Daisy Theme Toggle
+Component to add a dark and light theme to your AstroJS and DaisyUI project.
 
-```sh
-npm create astro@latest -- --template component
+## Features
+- Use any [DaisyUI theme](https://daisyui.com/docs/themes/#list-of-themes)
+- If an invalid theme is used it will default to DaisyUIs dark and light theme
+- Use with or without AstroJS View Transitions
+- No Flash of Unstyled Content
+- Use with any [DaisyUI theme controller](https://daisyui.com/components/theme-controller/)
+
+## Installation
+
+1. Install Tailwind CSS
+2. Install DaisyUI
+3. ```npm install astro-daisy-theme-toggle```
+
+## Usage
+1. Import the DaisyTheme component. It takes two props. darkTheme sets the dark theme and lightTheme sets the light theme. The component must wrap around any DaisyUI theme controller. Theme controllers have a value prop that can be removed or left in place. It will be ignored.
+
+```astro
+---
+import { DaisyTheme } from 'astro-daisy-theme-toggle'
+---
+<DaisyTheme darkTheme='forest' lightTheme='fantasy'>
+    <input type='checkbox' value='synthwave' class='toggle theme-controller' />
+</DaisyTheme>
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/non-html-pages)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/non-html-pages)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/component/devcontainer.json)
+2. Add the same themes you used in the DaisyTheme component to your DaisyUI plugin.
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── index.ts
-├── src
-│   └── MyComponent.astro
-├── tsconfig.json
-├── package.json
+```css
+@plugin "daisyui" {
+  themes:
+    fantasy --default,
+    forest --prefersdark;
+}
 ```
-
-The `index.ts` file is the "entry point" for your package. Export your components in `index.ts` to make them importable from your package.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command       | Action                                                                                                                                                                                                                           |
-| :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `npm link`    | Registers this package locally. Run `npm link my-component-library` in an Astro project to install your components                                                                                                               |
-| `npm publish` | [Publishes](https://docs.npmjs.com/creating-and-publishing-unscoped-public-packages#publishing-unscoped-public-packages) this package to NPM. Requires you to be [logged in](https://docs.npmjs.com/cli/v8/commands/npm-adduser) |
